@@ -9,5 +9,8 @@
     },
     "require": {
         "mongodb/mongodb": "^1.0.0"
+    },
+    "extra" {
+        "package-xml": "package.xml"
     }
 }
