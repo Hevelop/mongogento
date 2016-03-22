@@ -939,7 +939,7 @@ class Smile_Shell_Mongoify extends Mage_Shell_Abstract
         unset($row['value']);
 
         // Prepare update
-        $updateFilter = array('_id' => new MongoInt32($entityId));
+        $updateFilter = array('_id' => $entityId);
         $updateValue = array(
             '$addToSet' => array( // $addToSet because galleries.media_gallery is an array
                 'galleries.' . $attributeCode => array(

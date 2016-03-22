@@ -66,7 +66,7 @@ class Smile_MongoCatalog_Model_Resource_Override_Catalog_Product_Attribute_Backe
     {
         $result = array();
 
-        $loadFilter = array('_id' => new MongoInt32($product->getId()));
+        $loadFilter = array('_id' => $product->getId());
         $fieldName = 'galleries.' . $attributeCode;
         $loadField = array($fieldName);
 
@@ -96,7 +96,7 @@ class Smile_MongoCatalog_Model_Resource_Override_Catalog_Product_Attribute_Backe
      */
     public function saveGallery($product, $attributeCode, $savedGallery)
     {
-        $updateFilter = array('_id' => new MongoInt32($product->getId()));
+        $updateFilter = array('_id' => $product->getId());
         $updateValue = array('galleries.' . $attributeCode => array_values($savedGallery));
 
         $this->_getDocumentCollection()->update($updateFilter, array('$set' => $updateValue));

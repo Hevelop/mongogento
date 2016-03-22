@@ -587,8 +587,7 @@ class Smile_MongoCatalog_Model_Resource_Override_Catalog_Product extends Mage_Ca
             ->find($loadFilter, $fieldSelect);
 
         // Iterate through the loaded document to match awaited format
-        while ($it->hasNext()) {
-            $data = $it->getNext();
+        foreach ($it as $data) {
             foreach ($data as $key => $value) {
                 $storeData = sscanf($key, 'attr_%d');
                 if (is_int($storeData[0])) {

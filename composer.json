@@ -1,0 +1,13 @@
+{
+    "name": "jdchmiel/mongogento",
+    "type": "magento-module",
+    "description": "A fork of Smile-SA/mongogento with some Composer and PHP7 support.  Still relies on Magento autoloader. Dont use this, I hope to PR back to Smile-SA",
+    "version": "0.1.0",
+    "author": {
+        "name": "Jared Chmielecki",
+        "email": "jdchmiel@gmail.com"
+    },
+    "require": {
+        "mongodb/mongodb": "^1.0.0"
+    }
+}
