@@ -1,4 +1,6 @@
 <?php
+
+use MongoDB\Collection;
 /**
  * MongoGento
  *
@@ -172,7 +174,7 @@ class Smile_MongoCore_Model_Resource_Connection_Adapter
     public function getCollection($collectionName)
     {
         //return $this->_getConnection()->selectCollection($this->_config['dbname'], $collectionName);
-        return new MongoDb\Collection($this->_getConnection(), $this->_config['dbname'], $collectionName);
+        return new Collection($this->_getConnection(), $this->_config['dbname'], $collectionName);
     }
 
 

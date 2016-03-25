@@ -149,13 +149,15 @@ class Smile_MongoCatalog_Model_Resource_Override_Catalog_Product_Collection exte
 
                 $this->_loadedDocuments = array();
 
-                while ($cursor->hasNext()) {
-                    $document = $cursor->getNext();
-                    $this->_loadedDocuments[] = $document;
-                }
-            }
+//                while ($cursor->hasNext()) {
+//                    $document = $cursor->getNext();
+//                    $this->_loadedDocuments[] = $document;
+//                }
+            }   
 
-            foreach ($this->_loadedDocuments as $document) {
+//            foreach ($this->_loadedDocuments as $document) {
+            foreach ($cursor as $document) {
+                $this->_loadedDocuments[] = $document;
                 $loadedData = array();
                 //$document = $cursor->getNext();
 
