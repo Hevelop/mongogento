@@ -263,7 +263,7 @@ class Smile_MongoCatalog_Model_Resource_Override_Catalog_Product extends Mage_Ca
 
         $updateData = $this->_getSaveAllAttributesData($newObject, $saveData, $insertEntity);
 
-        $collection->updateOne($updateCond, array('$set' => $updateData), array('upsert' => true));
+        $collection->update($updateCond, array('$set' => $updateData), array('upsert' => true));
 
         $unsetData = $this->_getUnsetAllAttributesData($newObject, $saveData, $insertEntity);
 
@@ -533,7 +533,7 @@ class Smile_MongoCatalog_Model_Resource_Override_Catalog_Product extends Mage_Ca
             $removeFilter = $this->getIdsFilter($id);
 
             $collection = $this->_getDocumentCollection();
-            $collection->deleteOne($removeFilter, array('justOne' => false));
+            $collection->remove($removeFilter, array('justOne' => false));
         }
 
         return $this;
@@ -587,7 +587,8 @@ class Smile_MongoCatalog_Model_Resource_Override_Catalog_Product extends Mage_Ca
             ->find($loadFilter, $fieldSelect);
 
         // Iterate through the loaded document to match awaited format
-        foreach ($it as $data) {
+        while ($it->hasNext()) {
+            $data = $it->getNext();
             foreach ($data as $key => $value) {
                 $storeData = sscanf($key, 'attr_%d');
                 if (is_int($storeData[0])) {
@@ -727,7 +728,7 @@ class Smile_MongoCatalog_Model_Resource_Override_Catalog_Product extends Mage_Ca
     {
         $collection = $this->_getDocumentCollection();
         $updateData = array('$set' => array($fieldName => $fieldValue));
-        $collection->updateMany($updateCond, $updateData, array('multiple' => true));
+        $collection->update($updateCond, $updateData, array('multiple' => true));
         return $this;
     }
 
@@ -749,7 +750,7 @@ class Smile_MongoCatalog_Model_Resource_Override_Catalog_Product extends Mage_Ca
             $updateData = array($operator => $updateData);
         }
 
-        $collection->updateOne($updateCond, $updateData, array('upsert' => true));
+        $collection->update($updateCond, $updateData, array('upsert' => true));
 
         return $this;
     }

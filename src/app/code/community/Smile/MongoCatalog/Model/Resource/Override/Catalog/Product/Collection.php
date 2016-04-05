@@ -138,9 +138,9 @@ class Smile_MongoCatalog_Model_Resource_Override_Catalog_Product_Collection exte
 
                 $documentIds = $this->getLoadedIds();
 
-//                foreach ($documentIds as $key => $value) {
-//                    $documentIds[$key] = new MongoInt32($value);
-//                }
+                foreach ($documentIds as $key => $value) {
+                    $documentIds[$key] = new MongoInt32($value);
+                }
 
                 $idFilter = array('_id' => array('$in' => $documentIds));
 
@@ -149,15 +149,13 @@ class Smile_MongoCatalog_Model_Resource_Override_Catalog_Product_Collection exte
 
                 $this->_loadedDocuments = array();
 
-//                while ($cursor->hasNext()) {
-//                    $document = $cursor->getNext();
-//                    $this->_loadedDocuments[] = $document;
-//                }
-            }   
+                while ($cursor->hasNext()) {
+                    $document = $cursor->getNext();
+                    $this->_loadedDocuments[] = $document;
+                }
+            }
 
-//            foreach ($this->_loadedDocuments as $document) {
-            foreach ($cursor as $document) {
-                $this->_loadedDocuments[] = $document;
+            foreach ($this->_loadedDocuments as $document) {
                 $loadedData = array();
                 //$document = $cursor->getNext();
 
@@ -402,7 +400,7 @@ class Smile_MongoCatalog_Model_Resource_Override_Catalog_Product_Collection exte
                     $result['${$type}'][] = $this->_buildDocumentFilter($attribute, $currentCondition);
                 }
             } else if ($type == 'like') {
-                $regexp = new MongoDB\BSON\Regex(str_replace(array('\'%','%\''), '.*', $condition[$type]), 'i');
+                $regexp = new MongoRegex('/' . str_replace(array('\'%','%\''), '.*', $condition[$type]) . '/i');
                 $result = $resultCascade;
                 $result['$or'][0]['$and'][] = array($scopedAttributeName => array('$regex' => $regexp));
                 $result['$or'][1]['$and'][] = array($globalAttributeName => array('$regex' => $regexp));

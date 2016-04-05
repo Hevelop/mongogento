@@ -40,9 +40,9 @@ class Smile_MongoCore_Model_Resource_Connection_Query_Builder
 
         if (is_array($ids)) {
 
-//            foreach ($ids as $position => $entityId) {
-//                $ids[$position] = new MongoInt32($entityId);
-//            }
+            foreach ($ids as $position => $entityId) {
+                $ids[$position] = new MongoInt32($entityId);
+            }
 
             /**
              * Since version 2.6, MongoDB is attending real array in $in condition
@@ -56,7 +56,7 @@ class Smile_MongoCore_Model_Resource_Connection_Query_Builder
             $result = array('_id' => array('$in' => $ids));
 
         } else {
-            $result = array('_id' => $ids);
+            $result = array('_id' => new MongoInt32($ids));
         }
 
         return $result;
