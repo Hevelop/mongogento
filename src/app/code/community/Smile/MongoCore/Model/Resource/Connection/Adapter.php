@@ -1,4 +1,6 @@
 <?php
+
+use MongoDB\Collection;
 /**
  * MongoGento
  *
@@ -91,8 +93,8 @@ class Smile_MongoCore_Model_Resource_Connection_Adapter
 
         if ($this->_connection === null) {
             try {
-                $this->_connection = new MongoClient($this->_getConnectionString(), $this->_getConnectionOptions());
-            } catch (MongoConnectionException $e) {
+                $this->_connection = new MongoDB\Driver\Manager($this->_getConnectionString(), $this->_getConnectionOptions());
+            } catch (MongoDB\Driver\Exception $e) {
                 if ($retry > 0) {
                     $this->_connection = null;
                     return $this->_getConnection($retry - 1);
@@ -171,7 +173,8 @@ class Smile_MongoCore_Model_Resource_Connection_Adapter
      */
     public function getCollection($collectionName)
     {
-        return $this->_getConnection()->selectCollection($this->_config['dbname'], $collectionName);
+        //return $this->_getConnection()->selectCollection($this->_config['dbname'], $collectionName);
+        return new Collection($this->_getConnection(), $this->_config['dbname'], $collectionName);
     }
 
 

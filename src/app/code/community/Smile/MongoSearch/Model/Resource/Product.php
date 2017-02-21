@@ -49,8 +49,9 @@ class Smile_MongoSearch_Model_Resource_Product extends Smile_MongoCatalog_Model_
 
         $it = $collection->find($findCond);
 
-        while ($it->hasNext()) {
-            $currentDoc = $it->getNext();
+        //while ($it->hasNext()) {
+        foreach ($it as $currentDoc) {
+//            $currentDoc = $it->getNext();
 
             foreach (array('attr_0', 'attr_' . $storeId) as $currentStoreField) {
                 if (isset($currentDoc[$currentStoreField])) {

@@ -1,9 +1,15 @@
 {
-    "name": "smile/mongogento",
-    "type": "magento-module",
-    "license":"OSL-3.0",
-    "description":"The module provides an integration of MongoDB into Magento.",
-    "require": {
-        "magento-hackathon/magento-composer-installer": "*"
+  "name": "jdchmiel/mongogento",
+  "type": "magento-module",
+  "description": "A fork of Smile-SA/mongogento with some Composer and PHP7 support.  Still relies on Magento autoloader. Dont use this, I hope to PR back to Smile-SA",
+  "version": "0.1.0",
+  "authors": [
+    {
+      "name": "Jared Chmielecki",
+      "email": "jdchmiel@gmail.com"
     }
+  ],
+  "require": {
+    "mongodb/mongodb": "^1.0.0"
+  }
 }

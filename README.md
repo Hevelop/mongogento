@@ -15,21 +15,19 @@ This module should be deployed on new project with huge catalog (> 100,000 produ
 MongoGento requires you to install :
 
  - MongoDB server >= 2.4 : http://docs.mongodb.org/manual/installation/
- - MongoDB PHP driver on front : you can install it through PECL package http://pecl.php.net/package/mongo
+ - PHP 5.4+, PHP7, or HHVM(untested yet) (http://php.net/manual/en/mongodb.requirements.php for new mongoDB driver)
+ - Magento PHP7 patch (https://www.atwix.com/magento/magento-and-php-7/) 
+ - MongoDB PHP driver on front : http://php.net/manual/en/mongodb.installation.php
+ - MongoDB PHP Library (http://mongodb.github.io/mongo-php-library/  included via composer)
 
 For development environment a single MongoDB instance deployment is sufficient. If you plan a production environment with a more complicated architecture (ReplicaSet or Sharding), you will add to test it strongly on this architecture before it will go live and at least testing environment should reproduce this architecture.
 
 
 ## Module install
 
-The easiest way to install the module is to use the installer, by launching the following shell command from you Magento installation root folder :
-
-    php < <(wget -O - https://raw.github.com/Smile-SA/mongogento/master/installer.php)
+You should install this using composer.
 
 
-The installation will be processed from the master branch. If you prefer to pick a specific release (v.1.0.0 by example), you can use this syntax to specify the release :
-
-    php -- v.1.0.0 < <(wget -O - https://raw.github.com/Smile-SA/mongogento/master/installer.php)
 
 ## Configuration
 
